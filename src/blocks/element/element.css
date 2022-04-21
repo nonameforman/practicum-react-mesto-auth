@@ -1,0 +1,7 @@
+.element {
+    margin: 0 auto;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    position: relative;
+}
