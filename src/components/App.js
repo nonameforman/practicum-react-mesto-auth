@@ -36,15 +36,19 @@ function App() {
     }
   }
 
+  const signOut = () => {
+    localStorage.removeItem('token');
+}
+
   useEffect(() => {
     tokenCheck()
   }, [tokenCheck]);
 
   return (
       <div className="page">
-          <Header loggedIn={loggedIn} email={email} />
+          <Header loggedIn={loggedIn} signOut={signOut} email={email} />
           <Switch>
-            <ProtectedRoute path="/content" component={Content} loggedIn={loggedIn} />
+            <ProtectedRoute exact path="/" component={Content} loggedIn={loggedIn} />
             <Route path="/sign-up">
               <Register />
             </Route>
@@ -52,7 +56,7 @@ function App() {
               <Login handleLogin={handleLogin} />
             </Route>
             <Route path="*">
-              {loggedIn ? <Redirect to="/content" /> : <Redirect to="/sign-in" />}
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
             </Route>
           </Switch>
           <Footer />
